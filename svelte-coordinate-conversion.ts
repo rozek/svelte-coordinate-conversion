@@ -27,10 +27,15 @@
           case (Target == null):
             throw new Error('no target element given')
           case (Target instanceof Element):
+            let computedStyle = window.getComputedStyle(Target as Element)
+
+            let leftOffset = parseFloat(computedStyle.borderLeftWidth)
+            let topOffset  = parseFloat(computedStyle.borderTopWidth)
+
             let TargetPositionInViewport = (Target as Element).getBoundingClientRect()
             return {
-              left:originalPosition.left - TargetPositionInViewport.left,
-              top:  originalPosition.top - TargetPositionInViewport.top
+              left:originalPosition.left - TargetPositionInViewport.left - leftOffset,
+              top:  originalPosition.top - TargetPositionInViewport.top  - topOffset
             }
           default:
             throw new Error('invalid target element given')
@@ -67,10 +72,15 @@
           case (Target == null):
             throw new Error('no target element given')
           case (Target instanceof Element):
+            let computedStyle = window.getComputedStyle(Target as Element)
+
+            let leftOffset = parseFloat(computedStyle.borderLeftWidth)
+            let topOffset  = parseFloat(computedStyle.borderTopWidth)
+
             let TargetPositionInViewport = (Target as Element).getBoundingClientRect()
             return {
-              left:originalPosition.left + window.scrollX - TargetPositionInViewport.left,
-              top:  originalPosition.top + window.scrollY - TargetPositionInViewport.top
+              left:originalPosition.left + window.scrollX - TargetPositionInViewport.left - leftOffset,
+              top:  originalPosition.top + window.scrollY - TargetPositionInViewport.top  - topOffset
             }
           default:
             throw new Error('invalid target element given')
@@ -91,12 +101,19 @@
         throw new Error('invalid "Position" given')
     }
 
-    let SourcePositionInViewport:Position
+    let SourcePositionInViewport:Position, leftPosition:number, topPosition:number
     switch (true) {
       case (Source == null):
         throw new Error('no source element given')
       case (Source instanceof Element):
+        let computedStyle = window.getComputedStyle(Source as Element)
+
+        let leftOffset = parseFloat(computedStyle.borderLeftWidth)
+        let topOffset  = parseFloat(computedStyle.borderTopWidth)
+
         SourcePositionInViewport = (Source as Element).getBoundingClientRect()
+        leftPosition = SourcePositionInViewport.left + leftOffset
+        topPosition  = SourcePositionInViewport.top  + topOffset
         break
       default:
         throw new Error('invalid source element given')
@@ -107,13 +124,13 @@
         throw new Error('no coordinate system given')
       case 'viewport':
         return {
-          left:originalPosition.left + SourcePositionInViewport.left,
-          top:  originalPosition.top + SourcePositionInViewport.top
+          left:originalPosition.left + leftPosition,
+          top:  originalPosition.top + topPosition
         }
       case 'document':
         return {
-          left:originalPosition.left + SourcePositionInViewport.left + window.scrollX,
-          top:  originalPosition.top + SourcePositionInViewport.top  + window.scrollY
+          left:originalPosition.left + leftPosition + window.scrollX,
+          top:  originalPosition.top + topPosition  + window.scrollY
         }
 // @ts-ignore the following check is for non-TypeScript applications only
       case 'local':
