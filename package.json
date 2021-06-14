@@ -1,6 +1,6 @@
 {
   "name": "svelte-coordinate-conversion",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "converts coordinates between viewport, document and element coordinate systems",
   "main": "svelte-coordinate-conversion.js",
   "scripts": {
