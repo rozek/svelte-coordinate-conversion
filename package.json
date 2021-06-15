@@ -3,6 +3,11 @@
   "version": "0.1.1",
   "description": "converts coordinates between viewport, document and element coordinate systems",
   "main": "svelte-coordinate-conversion.js",
+  "module": "./svelte-coordinate-conversion.esm.js",
+  "exports": {
+    "require":"./svelte-coordinate-conversion.js",
+    "import": "./svelte-coordinate-conversion.esm.js"
+  },
   "scripts": {
     "build": "rimraf dist && tsc && rollup -c rollup.config.js",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -27,6 +32,8 @@
   },
   "homepage": "https://github.com/rozek/svelte-coordinate-conversion#readme",
   "devDependencies": {
+    "@rollup/plugin-commonjs": "^19.0.0",
+    "@rollup/plugin-node-resolve": "^13.0.0",
     "@rollup/plugin-typescript": "^8.2.1",
     "rimraf": "^3.0.2",
     "rollup": "^2.51.2",
