@@ -1,6 +1,6 @@
 # svelte-coordinate-conversion #
 
-converts coordinates between viewport, document and element coordinate systems
+converts coordinates between viewport, document and element coordinate systems (not only in Svelte)
  
 **NPM users**: please consider the [Github README](https://github.com/rozek/svelte-viewport-info/blob/main/README.md) for the latest description of this package (as updating the docs would otherwise always require a new NPM package version)
 
