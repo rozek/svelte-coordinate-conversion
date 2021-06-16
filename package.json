@@ -2,11 +2,11 @@
   "name": "svelte-coordinate-conversion",
   "version": "0.1.2",
   "description": "converts coordinates between viewport, document and element coordinate systems",
-  "main": "svelte-coordinate-conversion.js",
-  "module": "./svelte-coordinate-conversion.esm.js",
+  "main": "./dist/svelte-coordinate-conversion.js",
+  "module": "./dist/svelte-coordinate-conversion.esm.js",
   "exports": {
-    "require": "./svelte-coordinate-conversion.js",
-    "import": "./svelte-coordinate-conversion.esm.js"
+    "require": "./dist/svelte-coordinate-conversion.js",
+    "import": "./dist/svelte-coordinate-conversion.esm.js"
   },
   "scripts": {
     "build": "rimraf dist && tsc && rollup -c rollup.config.js",

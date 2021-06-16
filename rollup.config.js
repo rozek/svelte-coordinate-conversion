@@ -6,17 +6,17 @@ import typescript from '@rollup/plugin-typescript';
 import { terser } from 'rollup-plugin-terser'
 
 export default {
-  input: './svelte-coordinate-conversion.ts',
+  input: './src/svelte-coordinate-conversion.ts',
   output: [
     {
-      dir:       './',
+      file:     './dist/svelte-coordinate-conversion.js',
       format:    'umd', // builds for both Node.js and Browser
       name:      'Conversion', // required for UMD modules
       noConflict:true,
       sourcemap: true,
       exports: 'default'
     },{
-      file:     './svelte-coordinate-conversion.esm.js',
+      file:     './dist/svelte-coordinate-conversion.esm.js',
       format:   'esm',
       sourcemap:true
     }
