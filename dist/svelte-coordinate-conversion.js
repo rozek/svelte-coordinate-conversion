@@ -1,2 +1,129 @@
-!function(e,t){"object"==typeof exports&&"undefined"!=typeof module?module.exports=t():"function"==typeof define&&define.amd?define(t):(e="undefined"!=typeof globalThis?globalThis:e||self,function(){var o=e.Conversion,n=e.Conversion=t();n.noConflict=function(){return e.Conversion=o,n}}())}(this,(function(){"use strict";return{fromViewportTo:function(e,t,o){switch(!0){case null==t:throw new Error('no "Position" given');case"number"!=typeof t.left&&!(t.left instanceof Number):case"number"!=typeof t.top&&!(t.top instanceof Number):throw new Error('invalid "Position" given')}switch(e){case null:case void 0:throw new Error("no coordinate system given");case"viewport":return{left:t.left,top:t.top};case"document":return{left:t.left+window.scrollX,top:t.top+window.scrollY};case"local":switch(!0){case null==o:throw new Error("no target element given");case o instanceof Element:var n=window.getComputedStyle(o),r=parseFloat(n.borderLeftWidth),i=parseFloat(n.borderTopWidth),l=o.getBoundingClientRect();return{left:t.left-l.left-r,top:t.top-l.top-i};default:throw new Error("invalid target element given")}default:throw new Error("invalid coordinate system given")}},fromDocumentTo:function(e,t,o){switch(!0){case null==t:throw new Error('no "Position" given');case"number"!=typeof t.left&&!(t.left instanceof Number):case"number"!=typeof t.top&&!(t.top instanceof Number):throw new Error('invalid "Position" given')}switch(e){case null:case void 0:throw new Error("no coordinate system given");case"viewport":return{left:t.left-window.scrollX,top:t.top-window.scrollY};case"document":return{left:t.left,top:t.top};case"local":switch(!0){case null==o:throw new Error("no target element given");case o instanceof Element:var n=window.getComputedStyle(o),r=parseFloat(n.borderLeftWidth),i=parseFloat(n.borderTopWidth),l=o.getBoundingClientRect();return{left:t.left+window.scrollX-l.left-r,top:t.top+window.scrollY-l.top-i};default:throw new Error("invalid target element given")}default:throw new Error("invalid coordinate system given")}},fromLocalTo:function(e,t,o){switch(!0){case null==t:throw new Error('no "Position" given');case"number"!=typeof t.left&&!(t.left instanceof Number):case"number"!=typeof t.top&&!(t.top instanceof Number):throw new Error('invalid "Position" given')}var n,r,i;switch(!0){case null==o:throw new Error("no source element given");case o instanceof Element:var l=window.getComputedStyle(o),s=parseFloat(l.borderLeftWidth),a=parseFloat(l.borderTopWidth);r=(n=o.getBoundingClientRect()).left+s,i=n.top+a;break;default:throw new Error("invalid source element given")}switch(e){case null:case void 0:throw new Error("no coordinate system given");case"viewport":return{left:t.left+r,top:t.top+i};case"document":return{left:t.left+r+window.scrollX,top:t.top+i+window.scrollY};case"local":return{left:t.left,top:t.top};default:throw new Error("invalid coordinate system given")}}}}));
-//# sourceMappingURL=svelte-coordinate-conversion.js.map
+function fromViewportTo(System, originalPosition, Target) {
+    switch (true) {
+        case (originalPosition == null):
+            throw new Error('no "Position" given');
+        case (typeof originalPosition.left !== 'number') && !(originalPosition.left instanceof Number):
+        case (typeof originalPosition.top !== 'number') && !(originalPosition.top instanceof Number):
+            throw new Error('invalid "Position" given');
+    }
+    switch (System) {
+        case null:
+        case undefined:
+            throw new Error('no coordinate system given');
+        // @ts-ignore the following check is for non-TypeScript applications only
+        case 'viewport':
+            return { left: originalPosition.left, top: originalPosition.top };
+        case 'document':
+            return {
+                left: originalPosition.left + window.scrollX,
+                top: originalPosition.top + window.scrollY
+            };
+        case 'local':
+            switch (true) {
+                case (Target == null):
+                    throw new Error('no target element given');
+                case (Target instanceof Element):
+                    var computedStyle = window.getComputedStyle(Target);
+                    var leftOffset = parseFloat(computedStyle.borderLeftWidth);
+                    var topOffset = parseFloat(computedStyle.borderTopWidth);
+                    var TargetPositionInViewport = Target.getBoundingClientRect();
+                    return {
+                        left: originalPosition.left - TargetPositionInViewport.left - leftOffset,
+                        top: originalPosition.top - TargetPositionInViewport.top - topOffset
+                    };
+                default:
+                    throw new Error('invalid target element given');
+            }
+        default:
+            throw new Error('invalid coordinate system given');
+    }
+}
+function fromDocumentTo(System, originalPosition, Target) {
+    switch (true) {
+        case (originalPosition == null):
+            throw new Error('no "Position" given');
+        case (typeof originalPosition.left !== 'number') && !(originalPosition.left instanceof Number):
+        case (typeof originalPosition.top !== 'number') && !(originalPosition.top instanceof Number):
+            throw new Error('invalid "Position" given');
+    }
+    switch (System) {
+        case null:
+        case undefined:
+            throw new Error('no coordinate system given');
+        case 'viewport':
+            return {
+                left: originalPosition.left - window.scrollX,
+                top: originalPosition.top - window.scrollY
+            };
+        // @ts-ignore the following check is for non-TypeScript applications only
+        case 'document':
+            return { left: originalPosition.left, top: originalPosition.top };
+        case 'local':
+            switch (true) {
+                case (Target == null):
+                    throw new Error('no target element given');
+                case (Target instanceof Element):
+                    var computedStyle = window.getComputedStyle(Target);
+                    var leftOffset = parseFloat(computedStyle.borderLeftWidth);
+                    var topOffset = parseFloat(computedStyle.borderTopWidth);
+                    var TargetPositionInViewport = Target.getBoundingClientRect();
+                    return {
+                        left: originalPosition.left + window.scrollX - TargetPositionInViewport.left - leftOffset,
+                        top: originalPosition.top + window.scrollY - TargetPositionInViewport.top - topOffset
+                    };
+                default:
+                    throw new Error('invalid target element given');
+            }
+        default:
+            throw new Error('invalid coordinate system given');
+    }
+}
+function fromLocalTo(System, originalPosition, Source) {
+    switch (true) {
+        case (originalPosition == null):
+            throw new Error('no "Position" given');
+        case (typeof originalPosition.left !== 'number') && !(originalPosition.left instanceof Number):
+        case (typeof originalPosition.top !== 'number') && !(originalPosition.top instanceof Number):
+            throw new Error('invalid "Position" given');
+    }
+    var SourcePositionInViewport, leftPosition, topPosition;
+    switch (true) {
+        case (Source == null):
+            throw new Error('no source element given');
+        case (Source instanceof Element):
+            var computedStyle = window.getComputedStyle(Source);
+            var leftOffset = parseFloat(computedStyle.borderLeftWidth);
+            var topOffset = parseFloat(computedStyle.borderTopWidth);
+            SourcePositionInViewport = Source.getBoundingClientRect();
+            leftPosition = SourcePositionInViewport.left + leftOffset;
+            topPosition = SourcePositionInViewport.top + topOffset;
+            break;
+        default:
+            throw new Error('invalid source element given');
+    }
+    switch (System) {
+        case null:
+        case undefined:
+            throw new Error('no coordinate system given');
+        case 'viewport':
+            return {
+                left: originalPosition.left + leftPosition,
+                top: originalPosition.top + topPosition
+            };
+        case 'document':
+            return {
+                left: originalPosition.left + leftPosition + window.scrollX,
+                top: originalPosition.top + topPosition + window.scrollY
+            };
+        // @ts-ignore the following check is for non-TypeScript applications only
+        case 'local':
+            return { left: originalPosition.left, top: originalPosition.top };
+        default:
+            throw new Error('invalid coordinate system given');
+    }
+}
+export default {
+    fromViewportTo: fromViewportTo,
+    fromDocumentTo: fromDocumentTo,
+    fromLocalTo: fromLocalTo
+};
