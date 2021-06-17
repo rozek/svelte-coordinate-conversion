@@ -17,13 +17,10 @@
     "url": "git+https://github.com/rozek/svelte-coordinate-conversion.git"
   },
   "keywords": [
-    "svelte",
-    "svelte3",
-    "coordinate",
-    "conversion",
-    "viewport",
-    "document",
-    "element"
+    "coordinate-conversions",
+    "viewport-coordinates",
+    "document-coordinates",
+    "local-coordinates"
   ],
   "author": "Andreas Rozek <a.rozek@gmx.de> (https://www.rozek.de/)",
   "license": "MIT",
