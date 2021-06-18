@@ -51,12 +51,12 @@ The package offers a JavaScript `default` export, which may be imported as follo
 
 With such an import, the JavaScript API can be used as follows:
 
-* `Conversion.fromLocalTo('viewport',localPosition,TargetElement)`<br>converts `localPosition` (which is relative to the `TargetElement`) into a position relative to the current viewport
-* `Conversion.fromLocalTo('document',localPosition,TargetElement)`<br>converts `localPosition` (which is relative to the `TargetElement`) into a position relative to the document
-* `Conversion.fromViewportTo('local',ViewportPosition,TargetElement)`<br>converts `ViewportPosition` (which is relative to the current viewport) into a position relative to element `TargetElement`
-* `Conversion.fromViewportTo('document',ViewportPosition)`<br>converts `ViewportPosition` (which is relative to the current viewport) into a position relative to the document
-* `Conversion.fromDocumentTo('local',DocumentPosition,TargetElement)`<br>converts `DocumentPosition` (which is relative to the document) into a position relative to element `TargetElement`
-* `Conversion.fromDocumentTo('viewport',DocumentPosition)`<br>converts `DocumentPosition` (which is relative to the document) into a position relative to the current viewport
+* **`Conversion.fromLocalTo('viewport',localPosition,TargetElement)`**<br>converts `localPosition` (which is relative to the `TargetElement`) into a position relative to the current viewport
+* **`Conversion.fromLocalTo('document',localPosition,TargetElement)`**<br>converts `localPosition` (which is relative to the `TargetElement`) into a position relative to the document
+* **`Conversion.fromViewportTo('local',ViewportPosition,TargetElement)`**<br>converts `ViewportPosition` (which is relative to the current viewport) into a position relative to element `TargetElement`
+* **`Conversion.fromViewportTo('document',ViewportPosition)`**<br>converts `ViewportPosition` (which is relative to the current viewport) into a position relative to the document
+* **`Conversion.fromDocumentTo('local',DocumentPosition,TargetElement)`**<br>converts `DocumentPosition` (which is relative to the document) into a position relative to element `TargetElement`
+* **`Conversion.fromDocumentTo('viewport',DocumentPosition)`**<br>converts `DocumentPosition` (which is relative to the document) into a position relative to the current viewport
 
 ### Build Instructions ###
 
