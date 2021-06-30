@@ -4,6 +4,7 @@
   "description": "converts coordinates between viewport, document and element coordinate systems",
   "main": "./dist/svelte-coordinate-conversion.js",
   "module": "./dist/svelte-coordinate-conversion.esm.js",
+  "svelte": "./dist/svelte-coordinate-conversion.esm.js",
   "exports": {
     "require": "./dist/svelte-coordinate-conversion.js",
     "import": "./dist/svelte-coordinate-conversion.esm.js"
