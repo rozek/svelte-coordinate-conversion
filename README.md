@@ -69,45 +69,43 @@ For Svelte it is recommended to import the package within a module context:
 Using `svelte-coordinate-conversion` as an ECMAscript module looks very similar to the Svelte use case:
 
 ```
-<script>
-  import Conversion from 'svelte-coordinate-conversion'
+import Conversion from 'svelte-coordinate-conversion'
 
-  let TargetElement // element, whose local position is to be read or set
-  let localPosition, ViewportPosition, DocumentPosition
+let TargetElement // element, whose local position is to be read or set
+let localPosition, ViewportPosition, DocumentPosition
   
-  localPosition    = { left:0, top:0 } // local position to be converted
-  ViewportPosition = fromLocalTo('viewport',localPosition,TargetElement)
-  DocumentPosition = fromLocalTo('document',localPosition,TargetElement)
+localPosition    = { left:0, top:0 } // local position to be converted
+ViewportPosition = fromLocalTo('viewport',localPosition,TargetElement)
+DocumentPosition = fromLocalTo('document',localPosition,TargetElement)
 
-  ViewportPosition = { left:0, top:0 } // viewport position to be converted
-  localPosition    = fromViewportTo('local',   ViewportPosition,TargetElement)
-  DocumentPosition = fromViewportTo('document',ViewportPosition)
+ViewportPosition = { left:0, top:0 } // viewport position to be converted
+localPosition    = fromViewportTo('local',   ViewportPosition,TargetElement)
+DocumentPosition = fromViewportTo('document',ViewportPosition)
 
-  DocumentPosition = { left:0, top:0 } // document position to be converted
-  localPosition    = fromDocumentTo('local',   DocumentPosition,TargetElement)
-  ViewportPosition = fromDocumentTo('viewport',DocumentPosition)
-</script>
+DocumentPosition = { left:0, top:0 } // document position to be converted
+localPosition    = fromDocumentTo('local',   DocumentPosition,TargetElement)
+ViewportPosition = fromDocumentTo('viewport',DocumentPosition)
 ```
 
-## Usage as ECMAscript, CommonJS or AMD Module (or as a global Variable) ##
+## Usage as CommonJS or AMD Module (or as a global Variable) ##
 
 Let's assume that you already "required" or "imported" (or simply loaded) the module according to your local environment. In that case, you may use it as follows:
 
 ```
-  let TargetElement // element, whose local position is to be read or set
-  let localPosition, ViewportPosition, DocumentPosition
+let TargetElement // element, whose local position is to be read or set
+let localPosition, ViewportPosition, DocumentPosition
   
-  localPosition    = { left:0, top:0 } // local position to be converted
-  ViewportPosition = Conversion.fromLocalTo('viewport',localPosition,TargetElement)
-  DocumentPosition = Conversion.fromLocalTo('document',localPosition,TargetElement)
+localPosition    = { left:0, top:0 } // local position to be converted
+ViewportPosition = Conversion.fromLocalTo('viewport',localPosition,TargetElement)
+DocumentPosition = Conversion.fromLocalTo('document',localPosition,TargetElement)
 
-  ViewportPosition = { left:0, top:0 } // viewport position to be converted
-  localPosition    = Conversion.fromViewportTo('local',   ViewportPosition,TargetElement)
-  DocumentPosition = Conversion.fromViewportTo('document',ViewportPosition)
+ViewportPosition = { left:0, top:0 } // viewport position to be converted
+localPosition    = Conversion.fromViewportTo('local',   ViewportPosition,TargetElement)
+DocumentPosition = Conversion.fromViewportTo('document',ViewportPosition)
 
-  DocumentPosition = { left:0, top:0 } // document position to be converted
-  localPosition    = Conversion.fromDocumentTo('local',   DocumentPosition,TargetElement)
-  ViewportPosition = Conversion.fromDocumentTo('viewport',DocumentPosition)
+DocumentPosition = { left:0, top:0 } // document position to be converted
+localPosition    = Conversion.fromDocumentTo('local',   DocumentPosition,TargetElement)
+ViewportPosition = Conversion.fromDocumentTo('viewport',DocumentPosition)
 ```
 
 ## Example ##
