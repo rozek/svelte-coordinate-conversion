@@ -6,16 +6,94 @@ converts coordinates between viewport, document and element coordinate systems (
 
 ## Installation ##
 
+`svelte-coordinate-conversion` may be used as an ECMAScript module (ESM), a CommonJS or AMD module or from a global variable.
+
+You may either install the package into your build environment using [NPM](https://docs.npmjs.com/) with the command
+
 ```
 npm install svelte-coordinate-conversion
 ```
 
-## Usage ##
+or load the plain script file directly
+
+```
+<script src="https://unpkg.com/svelte-coordinate-conversion"></script>
+```
+
+## Access ##
+
+How to access the package depends on the type of module you prefer
+
+* ESM: `import Conversion from 'svelte-coordinate-conversion'`
+* CommonJS: `const Conversion = require('svelte-coordinate-conversion')`
+* AMD: `require(['svelte-coordinate-conversion'], (Conversion) => {...})`
+
+Alternatively, you may access the global variable `Conversion` directly.
+
+Note for ECMAScript module users: all module functions and values are exported individually, thus allowing your bundler to perform some "tree-shaking" in order to include actually used functions or values (together with their dependencies) only.
+
+## Usage within Svelte ##
+
+For Svelte it is recommended to import the package within a module context:
+
+```
+<script context="module">
+  import { fromLocalTo,fromViewportTo,fromDocumentTo } from 'svelte-coordinate-conversion'
+  import { onMount } from 'svelte'
+</script>
+
+<script>
+  let TargetElement // element, whose local position is to be read or set
+  let localPosition, ViewportPosition, DocumentPosition
+  
+  onMount(() => {
+    localPosition    = { left:0, top:0 } // local position to be converted
+    ViewportPosition = fromLocalTo('viewport',localPosition,TargetElement)
+    DocumentPosition = fromLocalTo('document',localPosition,TargetElement)
+
+    ViewportPosition = { left:0, top:0 } // viewport position to be converted
+    localPosition    = fromViewportTo('local',   ViewportPosition,TargetElement)
+    DocumentPosition = fromViewportTo('document',ViewportPosition)
+
+    DocumentPosition = { left:0, top:0 } // document position to be converted
+    localPosition    = fromDocumentTo('local',   DocumentPosition,TargetElement)
+    ViewportPosition = fromDocumentTo('viewport',DocumentPosition)
+  })
+</script>
+
+<div bind:this={TargetElement}></div>
+```
+
+## Usage as ECMAscript Module ##
+
+Using `svelte-coordinate-conversion` as an ECMAscript module looks very similar to the Svelte use case:
 
 ```
 <script>
   import Conversion from 'svelte-coordinate-conversion'
 
+  let TargetElement // element, whose local position is to be read or set
+  let localPosition, ViewportPosition, DocumentPosition
+  
+  localPosition    = { left:0, top:0 } // local position to be converted
+  ViewportPosition = fromLocalTo('viewport',localPosition,TargetElement)
+  DocumentPosition = fromLocalTo('document',localPosition,TargetElement)
+
+  ViewportPosition = { left:0, top:0 } // viewport position to be converted
+  localPosition    = fromViewportTo('local',   ViewportPosition,TargetElement)
+  DocumentPosition = fromViewportTo('document',ViewportPosition)
+
+  DocumentPosition = { left:0, top:0 } // document position to be converted
+  localPosition    = fromDocumentTo('local',   DocumentPosition,TargetElement)
+  ViewportPosition = fromDocumentTo('viewport',DocumentPosition)
+</script>
+```
+
+## Usage as ECMAscript, CommonJS or AMD Module (or as a global Variable) ##
+
+Let's assume that you already "required" or "imported" (or simply loaded) the module according to your local environment. In that case, you may use it as follows:
+
+```
   let TargetElement // element, whose local position is to be read or set
   let localPosition, ViewportPosition, DocumentPosition
   
@@ -30,7 +108,6 @@ npm install svelte-coordinate-conversion
   DocumentPosition = { left:0, top:0 } // document position to be converted
   localPosition    = Conversion.fromDocumentTo('local',   DocumentPosition,TargetElement)
   ViewportPosition = Conversion.fromDocumentTo('viewport',DocumentPosition)
-</script>
 ```
 
 ## Example ##
