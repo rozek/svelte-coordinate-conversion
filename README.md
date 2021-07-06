@@ -24,7 +24,7 @@ or load the plain script file directly
 
 How to access the package depends on the type of module you prefer
 
-* ESM: `import Conversion from 'svelte-coordinate-conversion'`
+* ESM (or Svelte): `import Conversion from 'svelte-coordinate-conversion'`
 * CommonJS: `const Conversion = require('svelte-coordinate-conversion')`
 * AMD: `require(['svelte-coordinate-conversion'], (Conversion) => {...})`
 
