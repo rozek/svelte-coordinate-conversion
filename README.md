@@ -71,7 +71,7 @@ For Svelte it is recommended to import the package within a module context:
 Using `svelte-coordinate-conversion` as an ECMAscript module looks very similar to the Svelte use case:
 
 ```
-import Conversion from 'svelte-coordinate-conversion'
+import { fromLocalTo,fromViewportTo,fromDocumentTo } from 'svelte-coordinate-conversion'
 
 let TargetElement // element, whose local position is to be read or set
 let localPosition, ViewportPosition, DocumentPosition
