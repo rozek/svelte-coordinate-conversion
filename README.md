@@ -18,7 +18,7 @@ npm install svelte-coordinate-conversion
 
 or load the plain script file directly
 
-```
+```html
 <script src="https://unpkg.com/svelte-coordinate-conversion"></script>
 ```
 
@@ -38,7 +38,7 @@ Note for ECMAScript module users: all module functions and values are exported i
 
 For Svelte it is recommended to import the package within a module context:
 
-```
+```html
 <script context="module">
   import { fromLocalTo,fromViewportTo,fromDocumentTo } from 'svelte-coordinate-conversion'
   import { onMount } from 'svelte'
@@ -70,7 +70,7 @@ For Svelte it is recommended to import the package within a module context:
 
 Using `svelte-coordinate-conversion` as an ECMAscript module looks very similar to the Svelte use case:
 
-```
+```javascript
 import { fromLocalTo,fromViewportTo,fromDocumentTo } from 'svelte-coordinate-conversion'
 
 let TargetElement // element, whose local position is to be read or set
@@ -93,7 +93,7 @@ ViewportPosition = fromDocumentTo('viewport',DocumentPosition)
 
 Let's assume that you already "required" or "imported" (or simply loaded) the module according to your local environment. In that case, you may use it as follows:
 
-```
+```javascript
 let TargetElement // element, whose local position is to be read or set
 let localPosition, ViewportPosition, DocumentPosition
   
