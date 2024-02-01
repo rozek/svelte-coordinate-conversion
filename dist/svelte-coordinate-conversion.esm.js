@@ -1,6 +1,7 @@
 //----------------------------------------------------------------------------//
 //                        Svelte Coordinate Conversion                        //
 //----------------------------------------------------------------------------//
+/**** fromViewportTo ****/
 function fromViewportTo(System, originalPosition, Target) {
     switch (true) {
         case (originalPosition == null):
@@ -41,6 +42,7 @@ function fromViewportTo(System, originalPosition, Target) {
             throw new Error('invalid coordinate system given');
     }
 }
+/**** fromDocumentTo ****/
 function fromDocumentTo(System, originalPosition, Target) {
     switch (true) {
         case (originalPosition == null):
@@ -81,6 +83,7 @@ function fromDocumentTo(System, originalPosition, Target) {
             throw new Error('invalid coordinate system given');
     }
 }
+/**** fromLocalTo ****/
 function fromLocalTo(System, originalPosition, Source) {
     switch (true) {
         case (originalPosition == null):
@@ -131,5 +134,5 @@ var svelteCoordinateConversion = {
     fromLocalTo: fromLocalTo
 };
 
-export default svelteCoordinateConversion;
+export { svelteCoordinateConversion as default };
 //# sourceMappingURL=svelte-coordinate-conversion.esm.js.map
