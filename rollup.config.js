@@ -12,8 +12,8 @@ export default {
       name:      'Conversion', // required for UMD modules
       noConflict:true,
       sourcemap: true,
-      exports: 'default',
-      plugins: [terser({ format:{ comments:false } })],
+      exports:   'default',
+      plugins:   [terser({ format:{ comments:false, safari10:true } })],
     },{
       file:     './dist/svelte-coordinate-conversion.esm.js',
       format:   'esm',
