@@ -4,6 +4,8 @@
 
   type Position = { left:number, top:number }
 
+/**** fromViewportTo ****/
+
   function fromViewportTo (
     System:'document'|'local', originalPosition:Position, Target?:Element
   ):Position {
@@ -49,6 +51,8 @@
     }
   }
 
+/**** fromDocumentTo ****/
+
   function fromDocumentTo (
     System:'viewport'|'local', originalPosition:Position, Target?:Element
   ):Position {
@@ -93,6 +97,8 @@
         throw new Error('invalid coordinate system given')
     }
   }
+
+/**** fromLocalTo ****/
 
   function fromLocalTo (
     System:'viewport'|'document', originalPosition:Position, Source?:Element
@@ -143,8 +149,6 @@
         throw new Error('invalid coordinate system given')
     }
   }
-
-
 
   export default {
     fromViewportTo,
