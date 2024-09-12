@@ -1,13 +1,13 @@
 // see https://github.com/rozek/build-configuration-study
 
-import typescript from '@rollup/plugin-typescript';
-import { terser } from 'rollup-plugin-terser'
+import typescript from '@rollup/plugin-typescript'
+import terser from '@rollup/plugin-terser'
 
 export default {
   input: './src/svelte-coordinate-conversion.ts',
   output: [
     {
-      file:     './dist/svelte-coordinate-conversion.js',
+      file:     './dist/svelte-coordinate-conversion.umd.js',
       format:    'umd', // builds for both Node.js and Browser
       name:      'Conversion', // required for UMD modules
       noConflict:true,
